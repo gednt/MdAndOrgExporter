@@ -1,0 +1,19 @@
+- Convert your Word documents easily with this Word (2013 onwards) add-in.
+- With this new Word add-in, you can convert your documents to Logseq-compatible Markdown and Org Modes.
+- # Features
+  - Convert Word (.docx) documents to Logseq-compatible Markdown and Org Modes.
+	- Support for converting lists-hierarchy to markdown and org formats.
+	- Support for custom tags before exporting.
+-
+- # Installation
+  	- ## Option 1 - Source Code
+		- Clone this repository.
+		- Compile the project.
+		- Publish in your preferred folder.
+		- In the published folder.
+			- Click in setup.exe
+		- Enjoy your new Add-in!
+		  ![image_1725995937189_0](https://github.com/user-attachments/assets/0243c553-01cb-4f23-8efb-c86310363a50)
+	- ## Option 2 - Download from the **releases'** page.
+- # Contributing
+	- If you want to contribute to this project, make a pull-request or request a feature opening an issue.
