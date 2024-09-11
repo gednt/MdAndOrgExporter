@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,7 +31,15 @@ namespace MdAndOrgExporter.Functions
                 {
                     textToReturn.Append(paragraph.IdentationCharacter);
                 }
-                textToReturn.Append(" "+(paragraph.ListFormat!=null? paragraph.ListFormat.ListString + " ":"")+paragraph.Text + System.Environment.NewLine);
+                if (paragraph.ContainsImage == false)
+                {
+                    textToReturn.Append(" " + (paragraph.ListFormat != null ? paragraph.ListFormat.ListString + " " : "") + paragraph.Text + System.Environment.NewLine);
+                }
+                else
+                {
+                    textToReturn.Append(" " + (paragraph.ListFormat != null ? paragraph.ListFormat.ListString + " " : "") + $"![{ Path.GetFileName(paragraph.Text)}](../assets/{paragraph.Text})" + System.Environment.NewLine);
+                }
+
             }
             return textToReturn.ToString();
         }

@@ -24,5 +24,7 @@ namespace MdAndOrgExporter.Models
         public List List { get; set; }
         public MarkupType MarkupTypeApplied { get; set; }
 
+        public bool ContainsImage { get; set; } = false;
+
     }
 }
