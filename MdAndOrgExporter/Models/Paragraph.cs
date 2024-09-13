@@ -9,8 +9,13 @@ namespace MdAndOrgExporter.Models
 {
     public class Paragraph
     {
-        public readonly string IdentationCharacter = "*";
+        public readonly char IdentationCharacter = '*';
         public readonly string IdentationCharacter_md = "-";
+        public Dictionary<Microsoft.Office.Interop.Word.WdOutlineLevel, string> Preffix = new Dictionary<WdOutlineLevel, string>();
+        public Dictionary<Microsoft.Office.Interop.Word.WdOutlineLevel, string> Suffix = new Dictionary<WdOutlineLevel, string>();
+        public ParagraphFormat ParagraphFormat { get; set; }
+        public Style Style { get; set; }
+
         public enum MarkupType
         {
             NONE = 0,

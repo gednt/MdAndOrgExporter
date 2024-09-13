@@ -41,6 +41,7 @@
             this.separator1 = this.Factory.CreateRibbonSeparator();
             this.txtTags = this.Factory.CreateRibbonEditBox();
             this.chkSeparateTags = this.Factory.CreateRibbonCheckBox();
+            this.chkAllowImages = this.Factory.CreateRibbonCheckBox();
             this.tab1.SuspendLayout();
             this.group1.SuspendLayout();
             this.SuspendLayout();
@@ -59,6 +60,7 @@
             this.group1.Items.Add(this.separator1);
             this.group1.Items.Add(this.txtTags);
             this.group1.Items.Add(this.chkSeparateTags);
+            this.group1.Items.Add(this.chkAllowImages);
             this.group1.Label = "Utilities";
             this.group1.Name = "group1";
             // 
@@ -89,6 +91,12 @@
             this.chkSeparateTags.Label = "Separate Tags";
             this.chkSeparateTags.Name = "chkSeparateTags";
             // 
+            // chkAllowImages
+            // 
+            this.chkAllowImages.Checked = true;
+            this.chkAllowImages.Label = "Allow Images";
+            this.chkAllowImages.Name = "chkAllowImages";
+            // 
             // Export
             // 
             this.Name = "Export";
@@ -112,6 +120,7 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonButton btnExportToMd;
         internal Microsoft.Office.Tools.Ribbon.RibbonSeparator separator1;
         internal Microsoft.Office.Tools.Ribbon.RibbonCheckBox chkSeparateTags;
+        internal Microsoft.Office.Tools.Ribbon.RibbonCheckBox chkAllowImages;
     }
 
     partial class ThisRibbonCollection
