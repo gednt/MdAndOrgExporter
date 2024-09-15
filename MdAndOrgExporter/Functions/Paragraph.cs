@@ -23,5 +23,46 @@ namespace MdAndOrgExporter.Functions
 
             }
         }
+
+        public int Type()
+        {
+            if(this.Style.NameLocal.Contains("Heading 1"))
+            {
+                return 1;
+            }
+            if(this.Style.NameLocal.Contains("Heading 2"))
+            {
+                return 2;
+            }
+            if(this.Style.NameLocal.Contains("Heading 3"))
+            {
+                return 3;
+            }
+            if(this.Style.NameLocal.Contains("Heading 4"))
+            {
+                return 4;
+            }
+            if (this.Style.NameLocal.Contains("Heading 5"))
+            {
+                return 5;
+            }
+            if (this.Style.NameLocal.Contains("Heading 6"))
+            {
+                return 6;
+            }
+            if (this.Style.NameLocal.Contains("Heading 7"))
+            {
+                return 7;
+            }
+            if (this.Style.NameLocal.Contains("Heading 8"))
+            {
+                return 8;
+            }
+            if (this.Style.NameLocal.Contains("Heading 9"))
+            {
+                return 9;
+            }
+            return 0;
+        }
     }
 }

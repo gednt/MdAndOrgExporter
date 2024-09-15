@@ -183,19 +183,11 @@ namespace MdAndOrgExporter
                         {
 
                         }
-                        do
-                        {
-                            if(paragraphs.First().Text!="\r" && paragraphs.First().Text != "/\r" && paragraphs.First().Text!="")
-                            {
-                                textToExport.Append(orgModeUtilities.CreateHeading(new List<Functions.Paragraph>() { paragraphs.First() }));
-                                paragraphs.RemoveAt(0);
-                            }
-                            else
-                            {
-                                paragraphs.RemoveAt(0);
-                            }
+                        //if(paragraphs.First().Text!="\r" && paragraphs.First().Text != "/\r" && paragraphs.First().Text!="")
+                        //{
+                            textToExport.Append(orgModeUtilities.CreateHeading(paragraphs));
 
-                        } while(paragraphs.Count>0);
+
 
                         var textReadyToBeExported = textToExport.ToString();
                         if (result == DialogResult.OK)
