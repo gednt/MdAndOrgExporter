@@ -51,7 +51,7 @@ namespace MdAndOrgExporter
                 fd.Title = "Export to Org";
                 fd.DefaultExt = ".org";
                 fd.FileName = Document.Name.Split('.')[0] + ".org";
-                fd.InitialDirectory = "%Documents%";
+                //fd.InitialDirectory = "%Documents%";
                 fd.Filter = "|*.org";
                 DialogResult result = fd.ShowDialog();
                 if(result== DialogResult.OK)
@@ -140,7 +140,8 @@ namespace MdAndOrgExporter
                                                 List = paragraph.Range.ListFormat.List,
                                                 Identation = paragraph.SpaceBefore + paragraph.LeftIndent,
                                                 ParagraphFormat = paragraph.Range.ParagraphFormat,
-                                                Style = paragraph.Range.ParagraphFormat.get_Style()
+                                                Style = paragraph.Range.ParagraphFormat.get_Style(),
+                                                Footnotes = Document.Range(paragraph.Range.Start,paragraph.Range.End).Footnotes
                                             });
                                         }
                                     }
@@ -153,11 +154,13 @@ namespace MdAndOrgExporter
                                 ListFormat = paragraph.Range.ListFormat,
                                 List = paragraph.Range.ListFormat.List,
                                 ParagraphFormat = paragraph.Range.ParagraphFormat,
-                                Style = paragraph.Range.ParagraphFormat.get_Style()
-                            });
-                        
+                                Style = paragraph.Range.ParagraphFormat.get_Style(),
+                                Footnotes = Document.Range(paragraph.Range.Start, paragraph.Range.End).Footnotes
+                        });
+                       
 
                     }
+
                     var textToExport = new StringBuilder();
                     OrgModeUtilities orgModeUtilities = new OrgModeUtilities();
                     textToExport.Append(orgModeUtilities.CreatePreamble(Path.GetFileNameWithoutExtension(fd.FileName), "DMF - Export to MD"));

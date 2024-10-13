@@ -22,6 +22,8 @@ namespace MdAndOrgExporter.Models
             BOLD = 1,
             ITALIC = 2
         };
+
+
         public float Identation { get; set; }
         public string Text { get; set; }
 
@@ -30,6 +32,8 @@ namespace MdAndOrgExporter.Models
         public MarkupType MarkupTypeApplied { get; set; }
 
         public bool ContainsImage { get; set; } = false;
+
+        public Footnotes Footnotes { get; set; }
 
     }
 }

@@ -64,5 +64,14 @@ namespace MdAndOrgExporter.Functions
             }
             return 0;
         }
+
+        public String ApplyProperty(string property, string value)
+        {
+            StringBuilder toReturn = new StringBuilder();
+            toReturn.AppendLine(":PROPERTIES:");
+            toReturn.AppendLine($":{property}: {value}");
+            toReturn.AppendLine(":END:");
+            return toReturn.ToString();
+        }
     }
 }
