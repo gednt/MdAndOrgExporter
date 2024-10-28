@@ -140,8 +140,11 @@ namespace MdAndOrgExporter
                                                 List = paragraph.Range.ListFormat.List,
                                                 Identation = paragraph.SpaceBefore + paragraph.LeftIndent,
                                                 ParagraphFormat = paragraph.Range.ParagraphFormat,
+                                                rangeStart = paragraph.Range.Start,
+                                                rangeEnd = paragraph.Range.End,
                                                 Style = paragraph.Range.ParagraphFormat.get_Style(),
-                                                Footnotes = Document.Range(paragraph.Range.Start,paragraph.Range.End).Footnotes
+                                                Footnotes = Document.Range(paragraph.Range.Start,paragraph.Range.End).Footnotes,
+                                                Endnotes = Document.Range(paragraph.Range.Start, paragraph.Range.End).Endnotes
                                             });
                                         }
                                     }
@@ -154,13 +157,23 @@ namespace MdAndOrgExporter
                                 ListFormat = paragraph.Range.ListFormat,
                                 List = paragraph.Range.ListFormat.List,
                                 ParagraphFormat = paragraph.Range.ParagraphFormat,
+                                rangeStart = paragraph.Range.Start,
+                                rangeEnd = paragraph.Range.End,
                                 Style = paragraph.Range.ParagraphFormat.get_Style(),
-                                Footnotes = Document.Range(paragraph.Range.Start, paragraph.Range.End).Footnotes
+                                Footnotes = Document.Range(paragraph.Range.Start, paragraph.Range.End).Footnotes,
+                                Endnotes = Document.Range(paragraph.Range.Start, paragraph.Range.End).Endnotes
                         });
                        
 
                     }
 
+                    if(Document.Endnotes.Count > 0)
+                    {
+                        paragraphs.Add(paragraphs[paragraphs.Count-1]);
+                        paragraphs[paragraphs.Count-1].Endnotes = Document.Endnotes;
+                        paragraphs[paragraphs.Count - 1].Text = "";
+                    }
+                    var FootNotes = paragraphs.Where(x => x.Footnotes.Count > 0);
                     var textToExport = new StringBuilder();
                     OrgModeUtilities orgModeUtilities = new OrgModeUtilities();
                     textToExport.Append(orgModeUtilities.CreatePreamble(Path.GetFileNameWithoutExtension(fd.FileName), "DMF - Export to MD"));

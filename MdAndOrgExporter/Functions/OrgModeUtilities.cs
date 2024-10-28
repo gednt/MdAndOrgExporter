@@ -30,7 +30,7 @@ namespace MdAndOrgExporter.Functions
             for (int cont=0;cont<Paragraphs.Count;cont++)
             {
                 System.Windows.Forms.Application.DoEvents();
-                WdStyleType type = Paragraphs[cont].Style.Type;
+              //  WdStyleType type = Paragraphs[cont].Style.Type;
                 var identLevel = 0;
                 identLevel = Paragraphs[cont].Type() > 0 ? Paragraphs[cont].Type():3 + (int)Paragraphs[cont].Identation;
                 identLevel = Paragraphs[cont].ParagraphFormat.Alignment==WdParagraphAlignment.wdAlignParagraphCenter?1:
@@ -59,21 +59,42 @@ namespace MdAndOrgExporter.Functions
                             textToReturn.Append(" " + (Paragraphs[cont].ListFormat != null ? Paragraphs[cont].ListFormat.ListString + " " : "") + $"![{Path.GetFileName(Paragraphs[cont].Text)}](../assets/{Paragraphs[cont].Text})" + " \n");
                         }
                     }
-                    if (Paragraphs[cont].Footnotes != null)
+
+                    if (Paragraphs[cont].Footnotes.Count>0)
                     {
-                        foreach(Footnote footnote in Paragraphs[cont].Footnotes)
+                        var locs = Paragraphs[cont].Footnotes.Location;
+                        textToReturn.Append(textToReturn.ToString().ReturnIteratedChars(identLevel + 1, Paragraphs[cont].IdentationCharacter));
+                        textToReturn.Append(" #+BEGIN_PINNED");
+                        for(int i =1; i <= Paragraphs[cont].Footnotes.Count;i++)
                         {
-                            textToReturn.Append(textToReturn.ToString().ReturnIteratedChars(identLevel + 1, Paragraphs[cont].IdentationCharacter));
-                            textToReturn.Append(" #+BEGIN_PINNED");
+                            var footnote = Paragraphs[cont].Footnotes[i];
                             textToReturn.AppendLine();
                             textToReturn.Append(footnote.Range.Text);
                             textToReturn.AppendLine();
-                            textToReturn.Append(" #+END_PINNED");
-                            textToReturn.AppendLine();
-
                         }
+                        textToReturn.Append(" #+END_PINNED");
+                        textToReturn.AppendLine();
                     }
- 
+
+                    if (Paragraphs[cont].Endnotes.Count > 0)
+                    {
+                        var locs = Paragraphs[cont].Footnotes.Location;
+                        textToReturn.Append(textToReturn.ToString().ReturnIteratedChars(identLevel + 1, Paragraphs[cont].IdentationCharacter));
+                        textToReturn.Append(" #+BEGIN_PINNED");
+                        for (int i = 1; i <= Paragraphs[cont].Endnotes.Count; i++)
+                        {
+                            Paragraphs[cont].Endnote = Paragraphs[cont].Endnotes[i];
+                            textToReturn.AppendLine();
+                            textToReturn.Append(Paragraphs[cont].Endnote.Range.Text);
+                            textToReturn.AppendLine();
+                        }
+                        textToReturn.Append(" #+END_PINNED");
+                        textToReturn.AppendLine();
+                    }
+
+
+
+
 
                 }
 

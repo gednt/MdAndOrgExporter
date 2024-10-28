@@ -35,5 +35,12 @@ namespace MdAndOrgExporter.Models
 
         public Footnotes Footnotes { get; set; }
 
+        public Endnotes Endnotes { get; set; }
+
+        public Endnote Endnote { get; set; }
+
+        public int rangeStart { get; set; }
+        public int rangeEnd { get; set; }
+
     }
 }
